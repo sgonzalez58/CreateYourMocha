@@ -69,14 +69,14 @@ describe('Notes - Unitaire', () => {
 })
 
 describe('Notes - Intégration', () => {
-    describe('Retourne la liste de notes', () => {
-        it('Doit retourner la liste de note actuelle au moement de l\'appel', () => {
-            let result = getAllNotes()
-            assert.equal(result, [])
+    describe('Modifie une note ajoutée et retourne la liste finale', () => {
+        it('Doit retourner la liste de note finale', () => {
+            addNote('mes devoirs', 'math : exo 2; francais : dictée')
+            updateNote(3, 'prochain rdv', 'le 3 mars à 10h')
 
-            addNote('prochain rdv', 'le 3 mars à 10h')
-            result = getAllNotes()
-            assert.equal(result[0], {id: 1, title: 'prochain rdv', content: 'le 3 mars à 10h'})
+            let result = getAllNotes()
+            assert.equal(result[0].title, 'prochain rdv')
+            assert.equal(result[0].content, 'le 3 mars à 10h')    
         })
     })
 })
